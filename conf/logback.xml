@@ -1,0 +1,37 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration  -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
+<!--                                                                -->
+<!-- For professional support please see                            -->
+<!--    http://www.qos.ch/shop/products/professionalSupport         -->
+<!--                                                                -->
+<configuration>
+  <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+    <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
+    <!--for further documentation-->
+    <File>batch.log</File>
+    <encoder>
+      <pattern>[%t][%d{HH :mm :ss} :%-5.5p][%-100.100c :%-4.4L] : %m%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>batch.log.%d{'.'yyyy-MM-dd}</fileNamePattern>
+    </rollingPolicy>
+  </appender>
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <filter.level.LevelMin>INFO</filter.level.LevelMin>
+    <filter.level>org.apache.log4j.varia.LevelRangeFilter</filter.level>
+    <filter.level.LevelMax>INFO</filter.level.LevelMax>
+    <encoder>
+      <pattern>[%5p] %d{HH:mm:ss,SSS} [%t] %c{1}:%L - %m%n</pattern>
+    </encoder>
+  </appender>
+ 
+  <root level="ALL">
+    <appender-ref ref="file"/>
+    <appender-ref ref="stdout"/>
+  </root>
+</configuration>
