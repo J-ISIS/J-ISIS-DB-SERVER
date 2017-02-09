@@ -17,8 +17,13 @@ public class Main {
     public static void main(String[] args) {
       try {
          
-       
+         
          ConsoleControlServer console = new ConsoleControlServer();
+         
+         if (null != args && null != args[0]){
+             console.setStartParam(args[0]);
+         }
+         
          console.start();
          console.run();
          console.kill();
